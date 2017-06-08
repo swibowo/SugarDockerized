@@ -80,3 +80,11 @@ services:
         build: ./images/permissions
         volumes:
             - ./data/app:/var/www/html
+    ldap:
+        container_name: "sugar79-ldap"
+        build: ./images/ldap
+        ports:
+            - "389:389"
+        volumes:
+            - ./data/ldap/var:/var/lib/ldap
+            - ./data/ldap/etc:/etc/ldap

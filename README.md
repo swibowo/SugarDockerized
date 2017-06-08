@@ -21,6 +21,9 @@ This stack is identical to the previous. The only difference is load balancer in
 * MySQL is accessible from the host on port 3306 using ip 127.0.0.1 (not localhost)
 * Elasticsearch hostname: sugar79-elasticsearch
 * Redis hostname: sugar79-redis
+* LDAP hostname: ldap://sugar79-ldap
+* LDAP admin user: cn=admin,dc=docker,dc=local
+* LDAP admin password: admin
 
 ## Core stack components
 * Linux
@@ -29,6 +32,7 @@ This stack is identical to the previous. The only difference is load balancer in
 * PHP
 * Redis
 * Elasticsearch
+* LDAP
 
 ## Docker containers
 * Apache load balancer (only on lb.yml)
@@ -37,12 +41,14 @@ This stack is identical to the previous. The only difference is load balancer in
 * MySQL database
 * Elasticsearch
 * Redis
+* LDAP
 
 ## File locations
 * The Sugar application files served from the web servers and leveraged by the cronjob server are located in ./data/app/sugar/. Within the web servers and the cronjob server the location is /var/www/html/sugar/
 * MySQL files are located in ./data/mysql
 * Elasticsearch files are located in ./data/elasticsearch
 * Redis files are located in ./data/redis
+* LDAP files are located in ./data/ldap
 
 ## Disable Zend Opcache
 If you do need to disable/enable Zend Opcache to customise the system without opcache enabled, you can:
