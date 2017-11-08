@@ -5,10 +5,13 @@ RUN apt-get update
 RUN apt-get -y dist-upgrade
 
 RUN apt-get install -y unzip vim curl php5-curl php5-gd php5-imap libphp-pclzip php5-ldap php5 php5-dev php5-mcrypt build-essential php5-redis php5-mysql
+
+RUN apt-get install -y sudo
+RUN adduser sugar --disabled-password --disabled-login --gecos ""
+RUN echo "sugar ALL=NOPASSWD: ALL" > /etc/sudoers.d/sugar
+
 RUN apt-get clean
 RUN apt-get -y autoremove
-
-RUN adduser sugar --disabled-password --disabled-login --gecos ""
 
 RUN sed -i "s#.*date.timezone =.*#date.timezone = Australia/Sydney#" /etc/php5/cli/php.ini
 RUN sed -i "s#error_reporting = .*#error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED#" /etc/php5/cli/php.ini
@@ -23,6 +26,7 @@ RUN php5enmod opcache
 COPY apps/sugarcron /usr/local/bin/sugarcron
 RUN chmod +x /usr/local/bin/sugarcron
 
+WORKDIR "/var/www/html/sugar"
 USER sugar
 
 CMD ["/usr/local/bin/sugarcron"]
